@@ -1,0 +1,100 @@
+/* WhatsApp Chat Widget */
+.whatsapp-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+  
+  .whatsapp-chat-button {
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .whatsapp-chat-button:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+  }
+  
+  /* WhatsApp Chat Modal */
+  .whatsapp-chat-modal {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    z-index: 1100;
+    width: 350px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .whatsapp-chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+  }
+  
+  .whatsapp-chat-header {
+    background-color: #25D366;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-chat-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .whatsapp-chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f1f1f1;
+  }
+  
+  .whatsapp-chat-footer {
+    display: flex;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .whatsapp-message-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  .send-whatsapp-message {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .send-whatsapp-message:hover {
+    background-color: #128C7E;
+  }
