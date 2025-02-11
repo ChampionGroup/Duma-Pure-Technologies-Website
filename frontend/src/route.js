@@ -11,9 +11,14 @@ import ApplyNowPage from "./components/ApplyNowPage";
 import PartnerPage from "./components/PartnerPage";
 import AgentPage from "./components/AgentPage";
 import ServiceProviderPage from "./components/ServiceProviderPage";
+import EmailVerify from "./components/EmailVerify";
+import ResetPassword from "./components/ResetPassword";
+import {ToastContainer} from 'react-toastify';
 
 const Routing = () => {
   return (
+    <div>
+    <ToastContainer />
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -25,8 +30,11 @@ const Routing = () => {
       <Route path="/become-partner" element={<PartnerPage />} />
       <Route path="/become-agent" element={<AgentPage />} />
       <Route path="/become-service-provider" element={<ServiceProviderPage />} />
+      <Route path="/email-verify" element={<EmailVerify />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<App />} />
     </Routes>
+    </div>
   );
 };
 

@@ -158,13 +158,28 @@ body {
   font-size: 1.2rem;
 }
 
+
 .navigation {
   display: flex;
   align-items: center;
   gap: 25px;
 }
+.eye-button,.password-toggle {
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.password-input,.password-input-wrapper {
+  position: relative;
+}
+.form-input {
+  color: black;
+}
 
-.login-button {
+.login-button, .signup-button {
   background-color: #3498db;
   color: white;
   border: none;
@@ -173,7 +188,6 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-left: 15px;
 }
 
 .payment-button:active {
@@ -737,10 +751,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: var(--background-color);
-  padding: 2rem;
-}
+ }
 
 .login-card,
 .signup-card {
@@ -780,7 +791,7 @@ body {
   flex-direction: column;
   gap: 1.5rem;
 }
-
+z
 .form-row {
   display: flex;
   gap: 1rem;

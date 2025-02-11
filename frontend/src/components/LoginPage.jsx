@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
+import axios from 'axios'; // Import axios
+import { toast } from 'react-toastify'; // Import toast
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -9,28 +11,32 @@ function Login() {
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetch('/api/auth/me');
-        if (res.ok) {
-          const userData = await res.json();
-          setUser(userData);
+  const checkAuth = async () => {
+    try {
+        const token = localStorage.getItem('token'); // Adjust this based on how you store your token
+        const res = await axios.get(`${backendUrl}/api/auth/is-auth`, {
+            headers: {
+                Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            },
+        });
+        if (res.status === 200) {
+            setUser(res.data);
+        } else {
+            console.error('Failed to fetch user data:', res.statusText);
         }
-      } catch (err) {
+    } catch (err) {
         console.error('Auth check failed:', err);
-      }
-    };
-    checkAuth();
-  }, []);
+    }
+};
 
   const getUserInitials = () => {
     if (!user) return '';
     return `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Enhanced validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -57,7 +63,17 @@ function Login() {
 
     // Reset error
     setError("");
-    // Perform login logic here
+
+    try {
+      const response = await axios.post('http://localhost:4000/api/auth/login', { email, password });
+      console.log('Login successful:', response.data);
+      toast.success("Login successful!"); // Show success toast
+      navigate('/'); // Redirect to home page after successful login
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError("Invalid email or password. Please try again.");
+      toast.error("Invalid email or password. Please try again."); // Show error toast
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -128,7 +144,7 @@ function Login() {
                 </button>
 
                 <div className="form-footer">
-                  <Link to="/forgot-password" className="forgot-password">
+                  <Link to="/reset-password" className="forgot-password">
                     Forgot Password?
                   </Link>
                   <p className="signup-link">
