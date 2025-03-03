@@ -12,8 +12,9 @@ import PartnerPage from "./components/PartnerPage";
 import AgentPage from "./components/AgentPage";
 import ServiceProviderPage from "./components/ServiceProviderPage";
 import EmailVerify from "./components/EmailVerify";
-import ResetPassword from "./components/ResetPassword";
+import ResetPasswordPage from "./components/ResetPasswordPage";
 import {ToastContainer} from 'react-toastify';
+import Dashboard from "./components/Dashboard";
 
 const Routing = () => {
   return (
@@ -31,7 +32,8 @@ const Routing = () => {
       <Route path="/become-agent" element={<AgentPage />} />
       <Route path="/become-service-provider" element={<ServiceProviderPage />} />
       <Route path="/email-verify" element={<EmailVerify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/" element={<App />} />
     </Routes>
     </div>

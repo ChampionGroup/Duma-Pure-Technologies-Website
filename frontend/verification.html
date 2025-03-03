@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+</head>
+<body>
+    <h1>Email Verification</h1>
+    <form id="verificationForm">
+        <label for="verificationCode">Enter your verification code:</label>
+        <input type="text" id="verificationCode" name="verificationCode" required>
+        <button type="submit">Verify</button>
+    </form>
+    <div id="message"></div>
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const verificationCode = document.getElementById('verificationCode').value;
+            const response = await fetch('/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ verificationCode })
+            });
+            const result = await response.json();
+            document.getElementById('message').innerText = result.message;
+        });
+    </script>
+</body>
+</html>

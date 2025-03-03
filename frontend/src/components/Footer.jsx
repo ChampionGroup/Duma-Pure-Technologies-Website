@@ -9,7 +9,6 @@ import {
 import "../App.css";
 import { Link } from "react-router-dom";
 
-
 function Footer() {
   return (
     <footer
@@ -30,101 +29,101 @@ function Footer() {
           <div className="col-md-4 mb-4">
             <h5>About Us</h5>
             <ul className="list-unstyled">
-            <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>About
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Projects
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Process
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Clients
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Industries
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Testimonials
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Our Leadership Team
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/career" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Careers
-                  </Link>
-                </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>About
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Projects
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Process
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Clients
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Industries
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Testimonials
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Our Leadership Team
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/career" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Careers
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="col-md-4 mb-4">
             <h5>Services</h5>
             <ul className="list-unstyled">
-            <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Website Design
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Web Support & Maintenance
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Web Hosting Services
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Graphic Design & Branding
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Digital Marketing
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Social Media Management
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Microsoft Office 365
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Laptop Repair Services
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-white no-underline">
-                    <span className="me-2">{">"}</span>Business Consulting
-                  </Link>
-                </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Website Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Web Support & Maintenance
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Web Hosting Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Graphic Design & Branding
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Social Media Management
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Microsoft Office 365
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Laptop Repair Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-white no-underline">
+                  <span className="me-2">{">"}</span>Business Consulting
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

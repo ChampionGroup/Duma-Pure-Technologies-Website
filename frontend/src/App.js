@@ -7,36 +7,48 @@ import { Link } from "react-router-dom";
 import Header from "./components/Header";
 import emailjs from "@emailjs/browser";
 import Footer from "./components/Footer";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 // Main application component
 function App() {
-  // State to control hero section animation
+  // All hooks must be at the top level
   const [animateHero, setAnimateHero] = useState(false);
-
-  // New state for mobile menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+  const [submissionStatus, setSubmissionStatus] = useState({
+    isSubmitting: false,
+    error: null,
+  });
+  const [messageDisplay, setMessageDisplay] = useState({
+    show: false,
+    message: "",
+    type: "success", // 'success' or 'error'
+  });
+  const [isWhatsAppChatOpen, setIsWhatsAppChatOpen] = useState(false);
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
   // Use effect hook to trigger hero animation when component mounts
   useEffect(() => {
     setAnimateHero(true);
   }, []);
-
-  // Array of background images for the hero section
-  // Uses high-quality tech-related images from Unsplash
-  const techImages = [
-    "https://images.unsplash.com/photo-1551650975-87deedd944c3", // Tech workspace image
-    "https://images.unsplash.com/photo-1488590528505-98d2b5ade38b", // Coding screen image
-    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6", // Programming environment image
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085", // Laptop and tech setup image
-  ];
-
-  // State for current background image
-  const [currentBgIndex, setCurrentBgIndex] = useState(0);
 
   // Automatically cycle through background images
   useEffect(() => {
@@ -47,26 +59,14 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // State for contact form
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    service: "",
-    message: "",
-  });
-
-  // State for submission status
-  const [submissionStatus, setSubmissionStatus] = useState({
-    isSubmitting: false,
-    error: null,
-  });
-
-  // State for message display
-  const [messageDisplay, setMessageDisplay] = useState({
-    show: false,
-    message: "",
-    type: "success", // 'success' or 'error'
-  });
+  // Array of background images for the hero section
+  // Uses high-quality tech-related images from Unsplash
+  const techImages = [
+    "https://images.unsplash.com/photo-1551650975-87deedd944c3", // Tech workspace image
+    "https://images.unsplash.com/photo-1488590528505-98d2b5ade38b", // Coding screen image
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6", // Programming environment image
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085", // Laptop and tech setup image
+  ];
 
   // Handle input change for contact form
   const handleInputChange = (event) => {
@@ -119,9 +119,6 @@ function App() {
       });
   };
 
-  // WhatsApp Chat State
-  const [isWhatsAppChatOpen, setIsWhatsAppChatOpen] = useState(false);
-
   // Toggle WhatsApp Chat Modal
   const toggleWhatsAppChat = () => {
     setIsWhatsAppChatOpen(!isWhatsAppChatOpen);
@@ -135,6 +132,10 @@ function App() {
     )}`;
     window.open(whatsappUrl, "_blank");
   };
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="digital-tech-website">

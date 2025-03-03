@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../App.css";
 import Software from "../assets/software.jpg";
+import LoadingSpinner from "./LoadingSpinner";
+import Black from "../assets/Black1.jpg";
+import Black2 from "../assets/Black2.jpg";
 
 function CareerPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   const jobOpenings = [
     {
       title: "Software Engineer",
@@ -48,14 +64,14 @@ function CareerPage() {
       responsibilities: [
         "Manage project lifecycles",
         "Coordinate cross-functional teams",
-        "Ensure project delivery and client satisfaction",
+        "Ensure project delivery   and client satisfaction",
       ],
     },
   ];
 
   const heroImages = [
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    Black,
+    Black2
   ];
 
   return (

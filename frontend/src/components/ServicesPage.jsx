@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaPaintBrush,
   FaChartLine,
@@ -7,8 +7,22 @@ import {
 } from "react-icons/fa";
 import Header from "./Header"; 
 import Footer from "./Footer"; 
+import LoadingSpinner from './LoadingSpinner';
 
 function ServicesPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   const services = [
     {
       title: "Web Development",

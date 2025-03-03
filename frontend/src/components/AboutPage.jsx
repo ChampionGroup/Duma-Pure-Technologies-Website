@@ -1,77 +1,83 @@
-import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import { 
-  FaGlobeAmericas, 
-  FaUsers, 
+import React, { useState, useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import {
+  FaGlobeAmericas,
+  FaUsers,
   FaTrophy,
   FaHandshake,
-  FaChartLine 
-} from 'react-icons/fa';
-import '../App.css';
-
+  FaChartLine,
+} from "react-icons/fa";
+import LoadingSpinner from './LoadingSpinner';
+import "../App.css";
+import Alice from "../assets/Alice.jpg"
+import Bonani from "../assets/Bonani.jpg"
+import Fortune from "../assets/Fortune.jpg"
+import Robert from "../assets/Robert.jpg"
+import Limpho from "../assets/Limpho.jpg"
+import Board from "../assets/blc.jpg"
 function AboutPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   const teamMembers = [
     {
-      name: "John Doe",
-      title: "CEO & Founder",
-      image: "https://www.freeiconspng.com/thumbs/question-mark-png/question-mark-png-25.png",
-      bio: "A visionary leader with extensive experience in technology transformation."
+      name: "Robert Duma",
+      title: "Director",
+      image: Robert,
+      bio: "As Director, Robert brings strategic vision and leadership to Duma Pure Technologies. With years of experience in technology transformation, he drives the company's mission to deliver innovative solutions while ensuring sustainable growth and client satisfaction.",
     },
     {
-      name: "John Doe",
-      title: "Chief Technology Officer",
-      image: "https://www.freeiconspng.com/thumbs/question-mark-png/question-mark-png-25.png",
-      bio: "An expert in innovative technology solutions and strategic planning."
+      name: "Alice Duma",
+      title: "Financial Director",
+      image: Alice,
+      bio: "Alice oversees all financial operations and strategic planning at Duma Pure Technologies. Her expertise in financial management and technology investment ensures the company's fiscal health while supporting our commitment to delivering cutting-edge solutions.",
     },
     {
-      name: "John Doe",
-      title: "Head of Design",
-      image: "https://www.freeiconspng.com/thumbs/question-mark-png/question-mark-png-25.png",
-      bio: "A creative professional driving user-centric design experiences."
+      name: "Bonani Duma",
+      title: "Marketing Manager",
+      image: Bonani,
+      bio: "Bonani leads our marketing initiatives with creativity and strategic insight. She expertly combines traditional and digital marketing approaches to enhance our brand presence and communicate our value proposition to clients and stakeholders.",
     },
     {
-      name: "John Doe",
-      title: "VP of Operations",
-      image: "https://www.freeiconspng.com/thumbs/question-mark-png/question-mark-png-25.png",
-      bio: "A strategic leader ensuring seamless execution of complex projects."
-    }
+      name: "Fortune Maphalala",
+      title: "Design and Development & Supervisor",
+      image: Fortune,
+      bio: "Fortune heads our design and development team, bringing technical excellence and creative innovation together. His supervision ensures the delivery of high-quality, user-centric solutions while maintaining the highest standards of development practices.",
+    },
+    {
+      name: "Limpho Monosi",
+      title: "Consultant",
+      image: Limpho,
+      bio: "As a consultant, Limpho provides valuable insights and expertise across various technology domains. Her comprehensive understanding of industry trends and business processes helps clients achieve their digital transformation goals effectively.",
+    },
   ];
 
-  const companyMilestones = [
-    {
-      year: 2015,
-      title: "Company Founded",
-      description: "Established with a vision to transform digital landscapes."
-    },
-    {
-      year: 2018,
-      title: "First Major Client",
-      description: "Secured a landmark project with a Fortune 500 company."
-    },
-    {
-      year: 2020,
-      title: "Innovation Award",
-      description: "Recognized for groundbreaking AI and machine learning solutions."
-    },
-    {
-      year: 2022,
-      title: "Global Expansion",
-      description: "Opened international offices in London and Singapore."
-    }
-  ];
 
   return (
     <div className="about-page">
       <Header />
-      
-     {/* Hero Section */}
-     <section className="about-hero" style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}>
+
+      {/* Hero Section */}
+      <section
+        className="about-hero"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Board})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="container">
           <div className="hero-content">
             <h1>Innovating Tomorrow, Today</h1>
@@ -89,21 +95,35 @@ function AboutPage() {
               <div className="value-card">
                 <FaChartLine className="value-icon" />
                 <h3>Mission</h3>
-                <p>At our DUMA PURE TECHNOLOGIES, we are passionate about helping our clients make a global impact. We understand that in today's interconnected world, reaching a broader audience is crucial for success. Through our innovative design solutions, we empower our clients to showcase their brands and offerings on a global scale.</p>
+                <p>
+                  At our DUMA PURE TECHNOLOGIES, we are passionate about helping
+                  our clients make a global impact. We understand that in
+                  today's interconnected world, reaching a broader audience is
+                  crucial for success. Through our innovative design solutions,
+                  we empower our clients to showcase their brands and offerings
+                  on a global scale.
+                </p>
               </div>
             </div>
             <div className="col-md-4">
               <div className="value-card">
                 <FaHandshake className="value-icon" />
                 <h3>Vision</h3>
-                <p>Our vision is to give organizations a partner they can count on to help them achieve their mission through the way they share their story.</p>
+                <p>
+                  Our vision is to give organizations a partner they can count
+                  on to help them achieve their mission through the way they
+                  share their story.
+                </p>
               </div>
             </div>
             <div className="col-md-4">
               <div className="value-card">
                 <FaHandshake className="value-icon" />
                 <h3>Integrity</h3>
-                <p>Committed to transparency, trust, and ethical business practices.</p>
+                <p>
+                  Committed to transparency, trust, and ethical business
+                  practices.
+                </p>
               </div>
             </div>
           </div>
@@ -117,9 +137,9 @@ function AboutPage() {
           <div className="row">
             <div className="col-md-4">
               <div className="project-card">
-                <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
-                  alt="Enterprise Web Solution" 
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+                  alt="Enterprise Web Solution"
                 />
                 <h3>Enterprise Web Solution</h3>
                 <p>Scalable digital platform for multinational corporation.</p>
@@ -127,9 +147,9 @@ function AboutPage() {
             </div>
             <div className="col-md-4">
               <div className="project-card">
-                <img 
-                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
-                  alt="AI Integration" 
+                <img
+                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+                  alt="AI Integration"
                 />
                 <h3>AI Integration</h3>
                 <p>Machine learning solution for predictive analytics.</p>
@@ -137,9 +157,9 @@ function AboutPage() {
             </div>
             <div className="col-md-4">
               <div className="project-card">
-                <img 
-                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" 
-                  alt="Cloud Migration" 
+                <img
+                  src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+                  alt="Cloud Migration"
                 />
                 <h3>Cloud Migration</h3>
                 <p>Seamless cloud infrastructure transformation.</p>
@@ -157,24 +177,29 @@ function AboutPage() {
             {[
               {
                 title: "Discovery",
-                description: "Understanding client needs and business objectives."
+                description:
+                  "Understanding client needs and business objectives.",
               },
               {
                 title: "Strategy",
-                description: "Developing a comprehensive digital transformation roadmap."
+                description:
+                  "Developing a comprehensive digital transformation roadmap.",
               },
               {
                 title: "Implementation",
-                description: "Executing solutions with precision and innovation."
+                description:
+                  "Executing solutions with precision and innovation.",
               },
               {
                 title: "Support",
-                description: "Continuous optimization and technical support."
-              }
+                description: "Continuous optimization and technical support.",
+              },
             ].map((step, index) => (
-              <div 
-                key={index} 
-                className={`process-step ${index % 2 === 0 ? 'process-left' : 'process-right'}`}
+              <div
+                key={index}
+                className={`process-step ${
+                  index % 2 === 0 ? "process-left" : "process-right"
+                }`}
               >
                 <div className="process-content">
                   <h3>{`${index + 1}. ${step.title}`}</h3>
@@ -214,7 +239,12 @@ function AboutPage() {
               <div className="achievement-card">
                 <FaGlobeAmericas className="achievement-icon" />
                 <h3>Global Reach</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi modi minus iste neque ratione praesentium laudantium, minima quibusdam, incidunt voluptatum, accusantium facere harum culpa reiciendis mollitia totam quam suscipit sequi?</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+                  modi minus iste neque ratione praesentium laudantium, minima
+                  quibusdam, incidunt voluptatum, accusantium facere harum culpa
+                  reiciendis mollitia totam quam suscipit sequi?
+                </p>
               </div>
             </div>
             <div className="col-md-4">
@@ -228,7 +258,12 @@ function AboutPage() {
               <div className="achievement-card">
                 <FaTrophy className="achievement-icon" />
                 <h3>Industry Awards</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis voluptate assumenda maiores laboriosam autem. Aspernatur, id. Fugiat esse error porro explicabo assumenda. Magni odit explicabo minus deserunt. Voluptatibus, ab error.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Corporis voluptate assumenda maiores laboriosam autem.
+                  Aspernatur, id. Fugiat esse error porro explicabo assumenda.
+                  Magni odit explicabo minus deserunt. Voluptatibus, ab error.
+                </p>
               </div>
             </div>
           </div>

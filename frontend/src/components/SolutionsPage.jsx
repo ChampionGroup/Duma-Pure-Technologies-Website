@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import LoadingSpinner from './LoadingSpinner';
 import Header from "./Header"; 
 import Footer from "./Footer"; 
 import Hosting from "../assets/hosting.jpg";
@@ -9,7 +8,18 @@ import Consulting from "../assets/consulting.jpg";
 
 function SolutionsPage() {
   const [activeService, setActiveService] = useState(null);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   const solutions = [
     {
@@ -120,10 +130,6 @@ function SolutionsPage() {
 
   const handleServiceClick = (service) => {
     setActiveService(activeService === service ? null : service);
-  };
-
-  const goToHome = () => {
-    navigate("/");
   };
 
   return (

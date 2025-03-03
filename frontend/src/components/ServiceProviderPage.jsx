@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -15,6 +16,19 @@ function ServiceProviderPage() {
     certifications: '',
     additionalDetails: ''
   });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

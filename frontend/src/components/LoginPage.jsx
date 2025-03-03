@@ -1,78 +1,85 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
-import axios from 'axios'; // Import axios
-import { toast } from 'react-toastify'; // Import toast
+import axios from "axios"; // Import axios
+import { toast } from "react-toastify"; // Import toast
+import Logo from "../assets/Duma.png";
+import Header from "./Header";
+import { AppContext, AppContextProvider } from "../context/AppContext";
+import LoadingSpinner from './LoadingSpinner';
 
 function Login() {
+  const { setIsLoggedin, getUserData } = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+  const backendUrl =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:4000";
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (you can remove this setTimeout if you have actual data loading)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
 
   const checkAuth = async () => {
     try {
-        const token = localStorage.getItem('token'); // Adjust this based on how you store your token
-        const res = await axios.get(`${backendUrl}/api/auth/is-auth`, {
-            headers: {
-                Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            },
-        });
-        if (res.status === 200) {
-            setUser(res.data);
-        } else {
-            console.error('Failed to fetch user data:', res.statusText);
-        }
+      const token = localStorage.getItem("token"); // Adjust this based on how you store your token
+      const res = await axios.get(`${backendUrl}/api/auth/is-auth`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        },
+      });
+      if (res.status === 200) {
+        setUser(res.data);
+      } else {
+        console.error("Failed to fetch user data:", res.statusText);
+      }
     } catch (err) {
-        console.error('Auth check failed:', err);
+      console.error("Auth check failed:", err);
     }
-};
+  };
 
   const getUserInitials = () => {
-    if (!user) return '';
-    return `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase();
+    if (!user) return "";
+    return `${user.firstName?.[0] || ""}${
+      user.lastName?.[0] || ""
+    }`.toUpperCase();
+  };
+
+  const handleResetPassword = async () => {
+    try {
+      await axios.post(`${backendUrl}/api/auth/reset-password`, { email });
+      toast.success("Password reset email sent!");
+    } catch (error) {
+      toast.error("Error sending password reset email.");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Enhanced validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!email.trim()) {
-      setError("Email is required");
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    if (!password.trim()) {
-      setError("Password is required");
-      return;
-    }
-
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters long");
-      return;
-    }
-
-    // Reset error
     setError("");
 
     try {
-      const response = await axios.post('http://localhost:4000/api/auth/login', { email, password });
-      console.log('Login successful:', response.data);
-      toast.success("Login successful!"); // Show success toast
-      navigate('/'); // Redirect to home page after successful login
+      const response = await axios.post(`${backendUrl}/api/auth/login`, {
+        email,
+        password,
+      });
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        await getUserData(); // Call getUserData after setting the token
+        toast.success("Login successful!");
+        navigate("/");
+      }
     } catch (error) {
-      console.error('Error during login:', error);
+      console.error("Error during login:", error);
       setError("Invalid email or password. Please try again.");
-      toast.error("Invalid email or password. Please try again."); // Show error toast
+      toast.error("Invalid email or password. Please try again.");
     }
   };
 
@@ -84,6 +91,10 @@ function Login() {
     navigate("/");
   };
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="login-container page-container">
       {user ? (
@@ -92,13 +103,18 @@ function Login() {
         </div>
       ) : (
         <div>
-          <button className="back-to-home" onClick={goToHome}>
+          {/* <button className="back-to-home" onClick={goToHome}>
             <FaArrowLeft /> Back to Home
-          </button>
-
+          </button> */}
+          <Header />
           <div className="login-card">
+            <div className="logo-container">
+              <img src={Logo} alt="Logo" className="logo-image" />
+            </div>
             <h1 className="login-title">Welcome Back</h1>
-            <p className="login-subtitle">Sign in to continue to your account</p>
+            <p className="login-subtitle">
+              Sign in to continue to your account
+            </p>
 
             <form onSubmit={handleSubmit} className="login-form">
               <div className="form-group">
@@ -131,7 +147,7 @@ function Login() {
                     className="password-toggle"
                     onClick={togglePasswordVisibility}
                   >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}a
                   </button>
                 </div>
               </div>
@@ -144,9 +160,12 @@ function Login() {
                 </button>
 
                 <div className="form-footer">
-                  <Link to="/reset-password" className="forgot-password">
+                  <button
+                    onClick={handleResetPassword}
+                    className="forgot-password"
+                  >
                     Forgot Password?
-                  </Link>
+                  </button>
                   <p className="signup-link">
                     Don't have an account? <Link to="/signup">Sign Up</Link>
                   </p>
